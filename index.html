@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InetMaburoh - Koneksi Cepat & Stabil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1E88E5;
+            --accent: #00C853;
+            --dark: #1A237E;
+            --light: #E3F2FD;
+            --white: #FFFFFF;
+            --gray: #ECEFF1;
+        }
+
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1rem;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--primary);
+            padding: 1rem;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .nav-links {
+            list-style-type: none;
+        }
+
+        .nav-links li {
+            margin: 1rem 0;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--light);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        .hero-image {
+            margin: 2rem auto 0;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23E3F2FD'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 3rem 1rem;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--gray);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 3rem 1rem;
+            background-color: var(--light);
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.3rem 2rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pricing-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-period {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .pricing-features {
+            list-style-type: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 3rem 1rem;
+            background-color: var(--white);
+        }
+
+        .testimonial-slider {
+            max-width: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            flex: 0 0 100%;
+            padding: 1.5rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--gray);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            height: 100%;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 3rem 1rem;
+            background-color: var(--light);
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 1rem 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 3rem 1rem;
+            background-color: var(--white);
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            margin: 1rem 0;
+        }
+
+        .footer-links li {
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            margin: 0 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Media Queries */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-cards {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 1000px;
+            }
+        }
+
+        /* Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #666;
+        }
+
+        .show {
+            display: flex;
+        }
+
+        /* Speed Test */
+        .speed-test {
+            padding: 3rem 1rem;
+            background-color: var(--gray);
+            text-align: center;
+        }
+
+        .speed-test-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .speed-meter {
+            width: 200px;
+            height: 100px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .speed-gauge {
+            width: 100%;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .speed-progress {
+            height: 100%;
+            width: 0%;
+            background-color: var(--primary);
+            transition: width 0.5s;
+        }
+
+        .speed-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 1rem 0;
+        }
+
+        .speed-unit {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .test-button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .test-button:hover {
+            background-color: var(--dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon">📡</span> Inet Maburoh
+                </div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </div>
+            <nav class="mobile-nav" id="mobileNav">
+                <ul class="nav-links">
+                    <li><a href="#features">Fitur</a></li>
+                    <li><a href="#pricing">Paket Harga</a></li>
+                    <li><a href="#speed-test">Tes Kecepatan</a></li>
+                    <li><a href="#testimonials">Testimoni</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Koneksi WiFi Super Cepat & Stabil</h1>
+                <p>Nikmati pengalaman internet tanpa batas dengan kecepatan hingga 300 Mbps. Cocok untuk streaming, gaming, dan kebutuhan bisnis.</p>
+                <a href="#pricing" class="cta-button">Lihat Paket</a>
+            </div>
+           
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <h2 class="section-title">Fitur Unggulan</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Kecepatan Tinggi</h3>
+                    <p>Kecepatan download hingga 300 Mbps dan upload hingga 100 Mbps.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Stabilitas Koneksi</h3>
+                    <p>Koneksi stabil tanpa buffering dengan jaminan uptime 99.9%.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Keamanan Terjamin</h3>
+                    <p>Dilengkapi dengan enkripsi tingkat tinggi dan perlindungan dari serangan cyber.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Jangkauan Luas</h3>
+                    <p>Jangkauan sinyal yang luas dengan dukungan teknologi mesh.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speed Test Section -->
+        <section class="speed-test" id="speed-test">
+            <h2 class="section-title">Tes Kecepatan WiFi</h2>
+            <div class="speed-test-container">
+                <p>Cek kecepatan internet Anda sekarang:</p>
+                <div class="speed-meter">
+                    <div class="speed-gauge">
+                        <div class="speed-progress" id="speedProgress"></div>
+                    </div>
+                    <div class="speed-value" id="speedValue">0</div>
+                    <div class="speed-unit">Mbps</div>
+                </div>
+                <div class="loading-spinner" id="loadingSpinner"></div>
+                <button class="test-button" id="testButton">Mulai Tes</button>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing" id="pricing">
+            <h2 class="section-title">Paket Harga</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Paket Awal</h3>
+                    <div class="pricing-price">Rp 125.000<span class="pricing-period">/bulan</span></div>
+                    <ul class="pricing-features">
+                        <li>Kecepatan hingga 7 Mbps</li>
+                        <li>Unlimited Kuota</li>
+                        <li>Cocok untuk 1-3 pengguna</li>
+                        <li>Gratis instalasi</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Pilih Paket</a>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Paket Utama</h3>
+                    <div class="pricing-price">Rp 100.000<span class="pricing-period">/bulan</span></div>
+                    <ul class="pricing-features">
+                        <li>Kecepatan hingga 5 Mbps</li>
+                        <li>Unlimited Kuota</li>
+                        <li>Cocok untuk 4-6 pengguna</li>
+                        <li>Gratis instalasi</li>
+                        <li>Router premium</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Pilih Paket</a>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Paket Hemat</h3>
+                    <div class="pricing-price">Rp 150.000<span class="pricing-period">/bulan</span></div>
+                    <ul class="pricing-features">
+                        <li>Kecepatan hingga 10 Mbps</li>
+                        <li>Unlimited Kuota</li>
+                        <li>Cocok untuk 10+ pengguna</li>
+                        <li>Gratis instalasi</li>
+                        <li>Router premium</li>
+                        <li>Dukungan teknis prioritas</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Pilih Paket</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <h2 class="section-title">Kata Pelanggan</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">Inet Maburoh benar-benar mengubah pengalaman internet saya. Streaming film 4K tanpa buffering dan game online tanpa lag!</div>
+                            <div class="testimonial-author">Pelanggan</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">Saya menggunakan Wifi Inet Maburoh untuk bisnis saya. Pelanggan sangat puas dengan kecepatan internetnya.</div>
+                            <div class="testimonial-author">Pelanggan</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">Layanan pelanggannya luar biasa! Teknisi datang tepat waktu dan sangat profesional dalam pemasangan.</div>
+                            <div class="testimonial-author">Pelanggan</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-nav" id="sliderNav"></div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq">
+            <h2 class="section-title">Pertanyaan Umum</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Berapa lama proses instalasi?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Proses instalasi biasanya membutuhkan waktu 1-2 hari kerja setelah pemesanan dikonfirmasi. Tim teknisi kami akan menghubungi Anda untuk menjadwalkan kunjungan.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Apakah ada biaya tambahan?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Tidak ada biaya tersembunyi. Semua paket sudah termasuk instalasi dan perangkat router standar. Untuk perangkat tambahan mungkin dikenakan biaya terpisah.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Apakah ada batasan kuota?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Semua paket Inet Maburoh menawarkan kuota unlimited tanpa FUP (Fair Usage Policy) yang ketat, sehingga Anda dapat menikmati internet tanpa khawatir kehabisan kuota.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Bagaimana jika terjadi gangguan?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Layanan pelanggan kami siap 24/7 untuk menangani gangguan. Anda dapat menghubungi kami melalui telepon, email, atau chat. tersedia teknisi siaga yang dapat datang ke lokasi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="text-center" style="text-align: center; margin-bottom: 30px;">
+                <p style="margin-bottom: 20px;">Tertarik dengan layanan kami? Hubungi kami sekarang untuk informasi lebih lanjut!</p>
+                <a href="https://wa.me/6287840667516" target="_blank" class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMSAxMS41YTguMzggOC4zOCAwIDAgMS0uOSAzLjggOC41IDguNSAwIDAgMS03LjYgNC43IDguMzggOC4zOCAwIDAgMS0zLjgtLjlMMyAyMWwxLjktNS43YTguMzggOC4zOCAwIDAgMS0uOS0zLjggOC41IDguNSAwIDAgMSA0LjctNy42IDguMzggOC4zOCAwIDAgMSAzLjgtLjloLjVhOC40OCA4LjQ4IDAgMCAxIDggOHYuNXoiPjwvcGF0aD48L3N2Zz4=" alt="WhatsApp" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 10px; filter: invert(1);">
+                    Hubungi via WhatsApp
+                </a>
+            </div>
+            
+            <h3 style="text-align: center; margin-bottom: 20px;">Atau isi formulir di bawah ini</h3>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">Nama</label>
+                    <input type="text" id="name" class="form-input" placeholder="Masukkan nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="Masukkan email Anda">
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="form-label">Nomor Telepon</label>
+                    <input type="tel" id="phone" class="form-input" placeholder="Masukkan nomor telepon Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="package" class="form-label">Paket yang Diminati</label>
+                    <select id="package" class="form-input" required>
+                        <option value="">Pilih paket</option>
+                        <option value="basic">Paket Hemat</option>
+                        <option value="premium">Paket Utama</option>
+                        <option value="business">Paket Awal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">Pesan</label>
+                    <textarea id="message" class="form-textarea" placeholder="Masukkan pesan atau pertanyaan Anda"></textarea>
+                </div>
+                <button type="button" class="submit-button" id="submitForm">Kirim Pesan via WhatsApp</button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="logo">
+                <span class="logo-icon">📡</span> Inet Maburoh
+            </div>
+            <ul class="footer-links">
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#pricing">Paket Harga</a></li>
+                <li><a href="#testimonials">Testimoni</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="#" class="social-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 9H2V21H6V9Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.5 4.5H7.5C5.84315 4.5 4.5 5.84315 4.5 7.5V16.5C4.5 18.1569 5.84315 19.5 7.5 19.5H16.5C18.1569 19.5 19.5 18.1569 19.5 16.5V7.5C19.5 5.84315 18.1569 4.5 16.5 4.5Z" stroke="white" stroke-width="2"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="copyright">© 2025 Inet Maburoh.</p>
+        </footer>
+
+        <!-- Modal Popup -->
+        <div class="modal" id="promoModal">
+            <div class="modal-content">
+                <button class="close-modal" id="closeModal">×</button>
+                <h3>Promo Spesial!</h3>
+                <p>Dapatkan diskon 25% untuk 3 bulan pertama berlangganan! Penawaran terbatas, segera hubungi kami.</p>
+                <a href="#contact" class="cta-button" id="promoButton">Dapatkan Sekarang</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // FAQ toggle
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Testimonial slider
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const sliderNav = document.getElementById('sliderNav');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        let currentSlide = 0;
+
+        // Create slider dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('slider-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            sliderNav.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.slider-dot');
+
+        function goToSlide(index) {
+            currentSlide = index;
+            testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update active dot
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        // Auto slide
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            goToSlide(currentSlide);
+        }, 5000);
+
+        // Speed Test Simulation
+        const testButton = document.getElementById('testButton');
+        const speedProgress = document.getElementById('speedProgress');
+        const speedValue = document.getElementById('speedValue');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+
+        testButton.addEventListener('click', () => {
+            // Reset
+            speedProgress.style.width = '0%';
+            speedValue.textContent = '0';
+            
+            // Show loading spinner
+            loadingSpinner.style.display = 'block';
+            testButton.disabled = true;
+            
+            // Simulate testing
+            setTimeout(() => {
+                loadingSpinner.style.display = 'none';
+                simulateSpeedTest();
+                testButton.disabled = false;
+            }, 2000);
+        });
+
+        function simulateSpeedTest() {
+            const maxSpeed = Math.floor(Math.random() * 200) + 100; // Random speed between 100-300 Mbps
+            let currentSpeed = 0;
+            const interval = setInterval(() => {
+                if (currentSpeed >= maxSpeed) {
+                    clearInterval(interval);
+                    return;
+                }
+                
+                currentSpeed += Math.floor(Math.random() * 10) + 5;
+                if (currentSpeed > maxSpeed) currentSpeed = maxSpeed;
+                
+                const percentage = (currentSpeed / 300) * 100;
+                speedProgress.style.width = `${percentage}%`;
+                speedValue.textContent = currentSpeed;
+            }, 100);
+        }
+
+        // Promo modal
+        const promoModal = document.getElementById('promoModal');
+        const closeModal = document.getElementById('closeModal');
+        const promoButton = document.getElementById('promoButton');
+
+        // Show modal after delay
+        setTimeout(() => {
+            promoModal.classList.add('show');
+        }, 5000);
+
+        closeModal.addEventListener('click', () => {
+            promoModal.classList.remove('show');
+        });
+
+        promoButton.addEventListener('click', () => {
+            promoModal.classList.remove('show');
+        });
+
+        // WhatsApp Form handling
+        const submitButton = document.getElementById('submitForm');
+        submitButton.addEventListener('click', function() {
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const packageSelect = document.getElementById('package');
+            const selectedPackage = packageSelect.options[packageSelect.selectedIndex].text;
+            const message = document.getElementById('message').value;
+            
+            // Validate form
+            if (!name || !phone || packageSelect.value === '') {
+                alert('Mohon isi nama, nomor telepon, dan pilih paket yang diminati.');
+                return;
+            }
+            
+            // Format WhatsApp message
+            let waMessage = `Halo, saya *${name}* tertarik dengan layanan SuperWiFi.\n\n`;
+            waMessage += `*Detail Kontak:*\n`;
+            waMessage += `- Nama: ${name}\n`;
+            waMessage += `- No. Telepon: ${phone}\n`;
+            if (email) waMessage += `- Email: ${email}\n`;
+            waMessage += `\n*Paket yang Diminati:* ${selectedPackage}\n`;
+            if (message) waMessage += `\n*Pesan:* ${message}\n`;
+            
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(waMessage);
+            
+            // Replace with your actual WhatsApp number (with country code, no + or spaces)
+            const whatsappNumber = '6287840667516'; // Ganti dengan nomor WhatsApp Anda
+            
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            // Show loading state
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Menghubungkan ke WhatsApp...';
+            submitButton.disabled = true;
+            
+            // Short timeout just for UX feedback
+            setTimeout(() => {
+                // Open WhatsApp in new tab/window
+                window.open(whatsappURL, '_blank');
+                
+                // Reset form and button
+                document.getElementById('contactForm').reset();
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }, 800);
+        });
+
+        // Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card, .faq-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial styles for animation
+        document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card, .faq-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        // Trigger once on load
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
